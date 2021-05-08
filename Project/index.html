@@ -1,21 +1,41 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
 <!--Group member: Jacob and Shin-->
-<title>index</title>
+<title>Index</title>
 </head>
+
+    
+    <script>        
+    
+    window.onload = function()
+    {
+
+
+    var textbox = document.getElementById('textbox1')
+    var button = document.getElementById('button1')
+
+
+
+    textbox.oninput = function(){
+        if(this.value == "storage"){
+            var storage = document.createElement("input")
+            storage.type = "storage.html"
+            storage.id = "storage1"
+            document.body.appendChild(storage)
+        }
+    }
+}
+
+
+    
+    </script>
+
 <body>
 
-    <input type="button" value="Submit">
-    <input type="checkbox" >
+    <input id="textbox1" type="textbox">
+    <input id="button1" type="button" value="Go">
 
 </body>
-
-
-
-
-
-
 </html>
