@@ -113,8 +113,30 @@
 
                     
                     else if(text === "alphabet"){
-
+                        for (var i = 'A'.charCodeAt(0); i <= 'Z'.charCodeAt(0); i++)
+                     {
+                        let myLetter = String.fromCharCode(i)
+    
+                        let myImage = document.createElement("img")
+                        myImage.id = myLetter
+                        myImage.width = 100
+                        myImage.src = "letters/" + myLetter + ".png"
+                        document.getElementById("section").appendChild(myImage)
                     }
+
+
+                    // change img src
+        
+                    if(myLetter = myImage){
+
+                    for (var i = 'A'.charCodeAt(0); i <= 'Z'.charCodeAt(0); i++)
+                    {
+                        let myLetter = String.fromCharCode(i)
+                        document.getElementById(myLetter).style.border = "none"
+                    }
+                    document.getElementById(e.key).style.border = "solid salmon 5px"
+                    }
+                }
                     
 
 
