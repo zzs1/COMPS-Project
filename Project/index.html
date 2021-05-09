@@ -2,7 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
+    <script src="jquery-3.6.0.min.js"></script>
 <!--Group member: Jacob and Shin-->
+
+<!--Jacob: Made Plugin Page, localStorage, JQuery-->
 <title>Index</title>
 </head>
 
@@ -12,42 +15,149 @@
     window.onload = function()
     {
 
+// JQUERY
 
-    var textbox = document.getElementById('textbox1')
-    var button = document.getElementById('button1')
+// jquery is used to change css border of second image when it is clicked
 
 
 
-    textbox.oninput = function(){
-        if(this.value == "storage"){
-            var storage = document.createElement("input")
-            storage.type = "storage.html"
-            storage.id = "storage1"
-            document.body.appendChild(storage)
-        }
-    }
+//
+
+
+                var textBox = document.createElement("input");
+                textBox.type = "text";
+                textBox.id = "t";
+                document.getElementById("textbox").appendChild(textBox);
+                textBox.focus();
+
+                var button = document.createElement("input");
+                button.type = "button";
+                button.value = "Go";
+                document.getElementById("textbox").appendChild(button);
+
+               
+               
+
+
+
+                button.onclick = function(){
+                    var text = document.getElementById("t").value;
+                    
+
+                    if(text === "ajax"){
+                        function loadDoc() {
+                        var xhttp = new XMLHttpRequest();
+                        xhttp.onreadystatechange = function() {
+                        if (Textbox.toUpperCase() == "ajax",this.readyState == 4 && this.status == 200) {
+                        document.createElement("h1");
+                        document.body.appendChild(xhttp);
+                        xhttp = str.toUpperCase();
+                        }
+                        };
+                        xhttp.open("GET", "advice.txt", true);
+                        xhttp.send();
+                        }
+                    }
+
+                else if(text === "alien"){
+
+                    
+                    }
+
+                    else if(text === "plugin"){
+                        var pluginLink = document.createElement("a");
+                pluginLink.innerText = "plugin.html";     
+                pluginLink.href = "../slick-master/plugin.html";
+                document.getElementById("section").appendChild(pluginLink);
+               
+                    }
+
+                    else if(text === "storage"){
+                        var storageLink = document.createElement("a");
+                        storageLink.innerText = "storage.html";     
+                        storageLink.href = "storage.html";
+                document.getElementById("section").appendChild(storageLink);
+                    }
+
+                    else if(text === "jquery"){
+
+                        $(document).ready(function(){  
+
+                        $('img').attr('width', 300)
+
+                        $('img:nth-child(2)').click(function(){
+                        $(this).css('border', '2px red solid')
+                        });
+                        });
+
+                        var image1 = document.createElement("img");
+                        image1.src = "1.jpg";
+                        document.getElementById("section").appendChild(image1);
+
+                        var image2 = document.createElement("img");
+                        image2.src = "2.jpg";
+                        document.getElementById("section").appendChild(image2);
+
+                        var image3 = document.createElement("img");
+                        image3.src = "3.jpg";
+                        document.getElementById("section").appendChild(image3);
+
+
+                        var image4 = document.createElement("img");
+                        image4.src = "4.jpg";
+                        document.getElementById("section").appendChild(image4);
+
+
+
+                    }
+
+                    
+                    else if(text === "alphabet"){
+
+                    }
+                    
+
+
 }
 
-function loadDoc() {
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (Textbox.toUpperCase() == "ajax",this.readyState == 4 && this.status == 200) {
-     document.createElement("h1");
-     document.body.appendChild(xhttp);
-     xhttp = str.toUpperCase();
-    }
-  };
-  xhttp.open("GET", "advice.txt", true);
-  xhttp.send();
+                
+
+
+
+
+    // textbox.oninput = function(){
+    //     if(this.value == "storage"){
+    //         var storage = document.createElement("input")
+    //         storage.type = "storage.html"
+    //         storage.id = "storage1"
+    //         document.body.appendChild(storage)
+    //     }
+    // }
 }
-    
+
+
     
     </script>
 
 <body>
 
-    <input id="textbox1" type="textbox">
-    <input id="button1" type="button" value="Go">
+    <div id="textbox">
+
+    </div>
+
+    <br><br>
+
+    <div id="section">
+
+    </div>
+
+    <br><br>
+
+    <!-- <img src="1.jpg" id="a" class="1a">
+    <img src="2.jpg" id="b" class="1b">
+    <img src="3.jpg" id="c" class="1c">
+    <img src="4.jpg" id="d" class="1d">
+    <img src="5.jpg" id="e" class="1e"> -->
 
 </body>
 </html>
