@@ -198,7 +198,7 @@
 
                     
                     else if(text === "alphabet"){
-                        for (var i = 'A'.charCodeAt(0); i <= 'Z'.charCodeAt(0); i++)
+                        for (var i = 'z'.charCodeAt(0); i >= 'a'.charCodeAt(0); i--)
                      {
                         let myLetter = String.fromCharCode(i)
     
@@ -207,39 +207,18 @@
                         myImage.width = 100
                         myImage.src = "letters/" + myLetter + ".png"
                         document.getElementById("section").appendChild(myImage)
+
+                        $('img').click(function(){
+                            $('img').attr('src', myImage.src)
+                        })
+
                     }
 
-
-                    // change img src
-        
-                    if(myLetter = myImage){
-
-                    for (var i = 'A'.charCodeAt(0); i <= 'Z'.charCodeAt(0); i++)
-                    {
-                        let myLetter = String.fromCharCode(i)
-                        document.getElementById(myLetter).style.border = "none"
-                    }
-                    document.getElementById(e.key).style.border = "solid salmon 5px"
-                    }
                 }
                     
 
 
 }
-
-                
-
-
-
-
-    // textbox.oninput = function(){
-    //     if(this.value == "storage"){
-    //         var storage = document.createElement("input")
-    //         storage.type = "storage.html"
-    //         storage.id = "storage1"
-    //         document.body.appendChild(storage)
-    //     }
-    // }
 }
 
 
@@ -257,14 +236,5 @@
     <div id="section">
 
     </div>
-
-    <br><br>
-
-    <!-- <img src="1.jpg" id="a" class="1a">
-    <img src="2.jpg" id="b" class="1b">
-    <img src="3.jpg" id="c" class="1c">
-    <img src="4.jpg" id="d" class="1d">
-    <img src="5.jpg" id="e" class="1e"> -->
-
 </body>
 </html>
