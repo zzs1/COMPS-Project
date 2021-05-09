@@ -11,7 +11,61 @@
 
     
     <script>        
-    
+
+            moveTimer = null 
+            stepNumber = 0
+
+            function stepRight()
+            {
+                stepNumber = stepNumber + 1
+
+                if(stepNumber > 30)
+                {
+                    stepNumber = 0
+                }
+
+                alien1.src = "alien/alienrwalk" + stepNumber + ".gif"
+            }
+
+
+
+            function stepLeft()
+            {
+                stepNumber = stepNumber + 1
+
+                if(stepNumber > 30)
+                {
+                    stepNumber = 0
+                }
+
+                alien1.src = "alien/alienlwalk" + stepNumber + ".gif"
+            }
+
+            function moveLeft()
+            {
+                alien1.style.left = parseInt(alien1.style.left) + 1 + "px"
+                stepLeft()
+            }
+
+            function moveRight()
+            {
+                alien1.style.left = parseInt(alien1.style.left) - 1 + "px"
+                stepRight()
+            }
+
+
+
+            function stopMoving()
+        {
+            if(moveTimer != null)
+            {
+                clearInterval(moveTimer)
+                moveTimer = null
+            }
+        }
+
+
+
     window.onload = function()
     {
 
@@ -22,8 +76,6 @@
 
 
 //
-
-
                 var textBox = document.createElement("input");
                 textBox.type = "text";
                 textBox.id = "t";
@@ -45,46 +97,57 @@
                     
 
                     if(text === "ajax"){
-                        function loadDoc() {
-                        var xhttp = new XMLHttpRequest();
-                            xhttp.open("GET", "advice.txt", true);
-                            xhttp.innerText = advice.responseText;
-                            xhttp.innerText = str.toUpperCase();
-                        xhttp.onreadystatechange = function() {
-                        if (this.readyState == 4 && this.status == 200) {
-                        document.createElement("h1");
-                        document.body.appendChild(xhttp);
 
-                        }
-                        };
+                        var head = document.createElement("h1");
+                        head.id = "head1"
+                        head.value = "head1"
+                        document.body.appendChild(head);
+
+                        var xhttp = new XMLHttpRequest()
+                        xhttp.open("GET", "advice.txt", true)
+                        xhttp.onreadystatechange = handleResponse()
+                        xhttp.send(null)
                         
-                        xhttp.send(null);
+                        function handleResponse() {
+
+                        if (xhttp.readyState == 4){
+                            if(xhttp.status == 200)
+                            {
+                                document.getElementById("head1").innerText = xhttp.responseText;
+                                document.getElementById("head1").innerText = toUpperCase();
+                            }
+                          
                         }
+
+
                     }
 
-                else if(text === "alien"){
+                    }
+
+            else if(text === "alien"){
             var alien = document.createElement("img")
-            alien.src = "images/alien/alienrwalk0.gif"
+            alien.src = "alien/alienrwalk0.gif"
             alien.id = "alien1"
+            var alien1 = document.getElementById("alien1")
             document.body.appendChild(alien)
                     }
-            else if(this.value == "walk"){
-            stepRight()
-            moveTimer = setInterval(bf, 100)
+            else if(text == "walk"){
+            moveTimer = setInterval(moveRight, 100)
+            if(parseInt(alien1.style.left) == window.innerWidth){
+            moveTimer = setInterval(moveLeft, 100)
             }
-        else if(this.value == "run"){
-            moveLeft()
-            moveTimer = setInterval(bf, 10)
+        }
+        else if(text == "run"){
+            moveTimer = setInterval(moveRight, 10)
+            if(parseInt(alien1.style.left) == window.innerWidth){
+            moveTimer = setInterval(moveLeft, 10)
             }
-        else if(this.value == "stop"){
-            if(moveTimer !== null)
-                    {
-                        clearInterval(moveTimer)
-                        moveTimer = null
-                    }
-             }
-        else if(this.value == "bye"){
-            document.getElementById("alien1").style.display = "none"
+            }
+        else if(text == "stop"){
+            stopMoving()
+            }
+        else if(text == "bye"){
+            document.getElementById("alien1").style.display = "none";
         }
                     else if(text === "plugin"){
                         var pluginLink = document.createElement("a");
