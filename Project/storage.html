@@ -2,13 +2,153 @@
 <head>
 <title>Storage</title>
 </head>
+
+<style media="screen">
+    input, button {
+        padding:7px;
+        height:40px;
+        font-family:'Josefin Sans', sans-serif;
+    }
+
+    fieldset{
+        margin-bottom:20px;
+        font-family:'Josefin Sans', sans-serif;
+    }
+
+    h2{
+      font-size:48px;
+      font-family:'Josefin Sans', sans-serif;
+    }
+
+    h1{
+      font-size:36px;
+      font-family:'Josefin Sans', sans-serif;
+    }
+
+
+    p{
+        font-family:'Josefin Sans', sans-serif;
+        line-height: 1.5;
+    }
+
+#ls{
+    width:900px;
+    height:500px;
+}
+
+#clear{
+    width:500px;
+    height:400px;
+}
+    
+</style>
 <body>
 
+<h2 id="title">Local Storage Explained</h2>
 
+<p>
+
+    When you are designing or trying to make anything you may hit a roadblock if you are not a back end developer or you do not want to go 
+    down the complicated path to be able to store certain data.
+    This is where localStorage comes into play. localStorage is basically a way to store data locally 
+    on a user's browser that stays there whether you exit the page, reload the browser or change pages.
+    The way it works is that there are keys and values. For example, you could say "name: Jacob", the name is considered the key and the value of name is Jacob.
+    To make use of these values there are 4 main methods,<br><b>1. setItem() - Makes a key and value then automatically adds it to localStorage until removed or cleared</b><br><b>2. getItem() - Gets the key of whatever you input and returns the value it has</b><br><b>3. removeItem() - Gets the key of whatever you input and removes both the key and the value attached</b><br><b>4. clear() - Clears the localStorage</b> 
+
+</p>
+
+<br><br>
+
+<img id="ls" src="localStorage_Pics/setItem.png">
+<hr>
+<img id="ls"src="localStorage_Pics/getItem.png">
+<hr>
+<img id="ls" src="localStorage_Pics/removeItem.png">
+<hr>
+<img id="clear" src="localStorage_Pics/clear.png">
+
+
+<br><br>
+
+<h1>Demo 1</h1>
+<fieldset>
+    <legend>Insert Data</legend>
+    <input id="inpKey" type="text" placeholder="Enter key...">
+    <input id="inpValue" type="text" placeholder="Enter Value...">
+    <button type="button" id="btnInsert">Insert Data</button>
+</fieldset>
+
+<fieldset>
+    
+    <legend>Local Storage</legend>
+    <div id="lsOutput"></div>
+</fieldset>
+
+<br>
+
+<h1>Demo 2</h1>
+<textarea id="myTextarea" rows="10" cols="80"></textarea>
+<p></p>
+<button onclick="mySave()">Save</button>
+<button onclick="myLoad()">Load</button>
 
 </body>
 
+<script type="text/javascript">
 
+
+function mySave() {
+        var myContent = document.getElementById("myTextarea").value;
+        localStorage.setItem("myContent", myContent);
+      }
+      function myLoad() {
+        var myContent = localStorage.getItem("myContent");
+        document.getElementById("myTextarea").value = myContent;
+      }
+
+
+
+
+const inpKey = document.getElementById("inpKey");
+const inpValue = document.getElementById("inpValue");
+const btnInsert = document.getElementById("btnInsert");
+const lsOutput= document.getElementById("lsOutput");
+
+btnInsert.onclick = function(){
+    const key = inpKey.value;
+    const value = inpValue.value;
+
+    console.log(key);
+    console.log(value);
+
+    if (key && value) {
+        localStorage.setItem(key, value)
+        location.reload();
+    }
+
+for (let i = 0; i < localStorage.length; i++){
+    const key = localStorage.key(i);
+    const value = localStorage.getItem(key);
+
+    lsOutput.innerHTML += `${key}: ${value}<br />`;
+}
+
+}
+
+
+
+    // localStorage.setItem("Name", "Jacob"); - Makes data in the console with a key "Name" and a value "Jacob"
+
+    // localStorage.removeItem("name"); - Removes this data entirely from the console it is stored within
+
+    localStorage.setItem("name", "Jacob");
+    localStorage.setItem("age", 50);
+
+    localStorage.clear();
+
+   
+    console.log(localStorage.getItem("name"));
+</script>
 
 
 
