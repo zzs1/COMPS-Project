@@ -60,10 +60,29 @@
                     }
 
                 else if(text === "alien"){
-
-                    
+            var alien = document.createElement("img")
+            alien.src = "images/alien/alienrwalk0.gif"
+            alien.id = "alien1"
+            document.body.appendChild(alien)
                     }
-
+            else if(this.value == "walk"){
+            stepRight()
+            moveTimer = setInterval(bf, 100)
+            }
+        else if(this.value == "run"){
+            moveLeft()
+            moveTimer = setInterval(bf, 10)
+            }
+        else if(this.value == "stop"){
+            if(moveTimer !== null)
+                    {
+                        clearInterval(moveTimer)
+                        moveTimer = null
+                    }
+             }
+        else if(this.value == "bye"){
+            document.getElementById("alien1").style.display = "none"
+        }
                     else if(text === "plugin"){
                         var pluginLink = document.createElement("a");
                 pluginLink.innerText = "plugin.html";     
