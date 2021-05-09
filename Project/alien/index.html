@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Assignment #2</title>
+        <script>
+
+            moveTimer = null 
+            stepNumber = 0
+
+            function stepRight()
+            {
+                stepNumber = stepNumber + 1
+
+                if(stepNumber > 30)
+                {
+                    stepNumber = 0
+                }
+
+                alien.src = "alien/alienrwalk" + stepNumber + ".gif"
+            }
+
+
+
+            function stepLeft()
+            {
+                stepNumber = stepNumber + 1
+
+                if(stepNumber > 30)
+                {
+                    stepNumber = 0
+                }
+
+                alien.src = "alien/alienlwalk" + stepNumber + ".gif"
+            }
+
+
+
+            function moveLeft()
+            {
+
+                if(parseInt(alien.style.left) == -20){
+                    stopMoving()
+                    moveTimer = setInterval(moveRight, 20)
+                }
+
+                alien.style.left = parseInt(alien.style.left) - 1 + "px"
+                stepLeft()
+            }
+
+            function moveRight()
+            {
+                alien.style.left = parseInt(alien.style.left) + 1 + "px"
+                stepRight()
+                willCrashIntoBox()
+
+                if(parseInt(alien.style.left) == window.innerWidth){
+                    stopMoving()
+                    moveTimer = setInterval(moveLeft, 20)
+                }
+            }
+
+
+            function jumpUp()
+            {
+                alien.style.top = parseInt(alien.style.top) - 100 + "px";
+            }
+
+            function jumpDown()
+            {
+                alien.style.top = parseInt(alien.style.top) + 100 + "px";
+            }
+
+            function jumping(){
+                moveTimer = setTimeout(jumpUp, 500);
+                moveTimer = setTimeout(jumpDown, 1000);
+            }
+
+
+
+
+            function stopMoving()
+        {
+            if(moveTimer != null)
+            {
+                clearInterval(moveTimer)
+                moveTimer = null
+            }
+        }
+
+
+
+
+            window.onload=function()
+            {
+                alien = document.getElementById("a")
+                // alien.onclick=toggleMoving              
+                window.onkeydown=toggleMoving
+            }
+
+            function toggleMoving(e)
+            {
+                // which object just had something done to it, which called toggleMoving? this
+                // alert(this.src)
+
+                // which event was just done to "this", which called toggleMoving?
+
+                if(e.which == 39) // 39 is the > right arrow key
+                {
+                    if(moveTimer == null)
+                    {
+                        moveTimer = setInterval(moveRight, 20)
+                    }
+                    else
+                    {
+                        clearInterval(moveTimer)
+                        moveTimer = null
+                    }
+                }
+                else if(e.which == 37) // the < left arrow key
+                {
+                    if(moveTimer == null)
+                    {
+                        moveTimer = setInterval(moveLeft, 20)
+                    }
+                    else
+                    {
+                        clearInterval(moveTimer)
+                        moveTimer = null
+                    }
+                    
+                }
+
+                else if(e.which == 38) // the < up arrow key
+                {
+                    if(moveTimer == null)
+                    {
+                        jumping();
+                    }
+                    
+                }
+
+                else if(e.which == 40) // the < down arrow key
+                {
+                    if(moveTimer == null)
+                    {
+                        moveTimer = setInterval(stopMoving, 20)
+                    }
+                    else
+                    {
+                        clearInterval(moveTimer)
+                        moveTimer = null
+                    }
+                }
+            }
+
+        </script>
+    </head>
+
+    <body>
+        <img src="alien/alienrwalk0.gif" id="a" alt="aliens" style="position:absolute;left:9px; top:300px">
+       
+    </body>
+</html>
