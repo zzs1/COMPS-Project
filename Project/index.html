@@ -98,29 +98,29 @@
 
                     if(text === "ajax"){
 
-                        var MyAjaxRequestObject = new XMLHttpRequest()
+                var MyAjaxRequestObject = new XMLHttpRequest()
 
-                        MyAjaxRequestObject.onreadystatechange=ProcessData
+                MyAjaxRequestObject.onreadystatechange=ProcessData
 
-                        function ProcessData(){
-                            if(MyAjaxRequestObject.readyState == 4 && MyAjaxRequestObject.status == 200)
-                            {
-                            var head = document.createElement("h1")
-                            head.id = "header"
-                            document.body.appendChild(head)
-                            var head1 = JSON.parse(MyAjaxRequestObject.responseText.toUpperCase())
-                            //head.innerHTML = head1
-                            document.getElementById("header").innerHTML = head1[0] + " " + head1[1] + " " + head1[2] + " " + head1[3] + " " + head1[4] + " " + head1[5] + " " + head1[6] + " " + head1[7] + " " + head1[8] + " ";
-                            }
-                             else if(MyAjaxRequestObject.status == 404)
-                             {
-                                 alert("error!")
-                             }
+                function ProcessData(){
+                     if(MyAjaxRequestObject.readyState == 4 && MyAjaxRequestObject.status == 200)
+                     {
+                     var head = document.createElement("h1")
+                     head.id = "header"
+                     document.body.appendChild(head)
+                     var head1 = JSON.parse(MyAjaxRequestObject.responseText.toUpperCase())
+                     //head.innerHTML = head1
+                     document.getElementById("header").innerHTML = head1[0] + " " + head1[1] + " " + head1[2] + " " + head1[3] + " " + head1[4] + " " + head1[5] + " " + head1[6] + " " + head1[7] + " " + head1[8] + " ";
+                     }
+                     else if(MyAjaxRequestObject.status == 404)
+                     {
+                     alert("error!")
+                     }
 
-                            }
-                        MyAjaxRequestObject.open("GET", "advice.txt", true);
-                        MyAjaxRequestObject.send();
-                    
+                }
+                     MyAjaxRequestObject.open("GET", "advice.txt", true);
+                     MyAjaxRequestObject.send();
+
                     }
 
             else if(text === "alien"){
@@ -197,7 +197,7 @@
 
                     
                     else if(text === "alphabet"){
-                        for (var i = 'A'.charCodeAt(0); i <= 'Z'.charCodeAt(0); i++)
+                        for (var i = 'z'.charCodeAt(0); i >= 'a'.charCodeAt(0); i--)
                      {
                         let myLetter = String.fromCharCode(i)
     
@@ -206,39 +206,18 @@
                         myImage.width = 100
                         myImage.src = "letters/" + myLetter + ".png"
                         document.getElementById("section").appendChild(myImage)
+
+                        $('img').click(function(){
+                            $('img').attr('src', myImage.src)
+                        })
+
                     }
 
-
-                    // change img src
-        
-                    if(myLetter = myImage){
-
-                    for (var i = 'A'.charCodeAt(0); i <= 'Z'.charCodeAt(0); i++)
-                    {
-                        let myLetter = String.fromCharCode(i)
-                        document.getElementById(myLetter).style.border = "none"
-                    }
-                    document.getElementById(e.key).style.border = "solid salmon 5px"
-                    }
                 }
                     
 
 
 }
-
-                
-
-
-
-
-    // textbox.oninput = function(){
-    //     if(this.value == "storage"){
-    //         var storage = document.createElement("input")
-    //         storage.type = "storage.html"
-    //         storage.id = "storage1"
-    //         document.body.appendChild(storage)
-    //     }
-    // }
 }
 
 
@@ -256,14 +235,5 @@
     <div id="section">
 
     </div>
-
-    <br><br>
-
-    <!-- <img src="1.jpg" id="a" class="1a">
-    <img src="2.jpg" id="b" class="1b">
-    <img src="3.jpg" id="c" class="1c">
-    <img src="4.jpg" id="d" class="1d">
-    <img src="5.jpg" id="e" class="1e"> -->
-
 </body>
 </html>
