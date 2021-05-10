@@ -96,36 +96,32 @@
                     var text = document.getElementById("t").value;
                     
 
-                  if(text === "ajax"){
+                                    if(text === "ajax"){
 
                         var MyAjaxRequestObject = new XMLHttpRequest()
-                        MyAjaxRequestObject.open("GET", "advice.txt", true)
+
                         MyAjaxRequestObject.onreadystatechange=ProcessData
-                        MyAjaxRequestObject.send(null)
+
                         function ProcessData(){
-                            if(MyAjaxRequestObject.readyState == 4)
+                            if(MyAjaxRequestObject.readyState == 4 && MyAjaxRequestObject.status == 200)
                             {
-                                if(MyAjaxRequestObject.status == 200)
-                                {
                             var head = document.createElement("h1")
-                            var head1 = JSON.parse(MyAjaxRequestObject.responseText)
-                            head.innerHTML = head1;
-                            head.innerHTML = toUpperCase()
+                            head.id = "header"
                             document.body.appendChild(head)
-                        }
+                            var head1 = JSON.parse(MyAjaxRequestObject.responseText.toUpperCase())
+                            //head.innerHTML = head1
+                            document.getElementById("header").innerHTML = head1[0] + " " + head1[1] + " " + head1[2] + " " + head1[3] + " " + head1[4] + " " + head1[5] + " " + head1[6] + " " + head1[7] + " " + head1[8] + " ";
+                            }
                              else if(MyAjaxRequestObject.status == 404)
                              {
                                  alert("error!")
                              }
-                             else
-                             {
-                             alert("What?")
-                             }
+
                             }
-                        }
+                        MyAjaxRequestObject.open("GET", "advice.txt", true);
+                        MyAjaxRequestObject.send();
                     
                     }
-
             else if(text === "alien"){
             var alien = document.createElement("img")
             alien.src = "alien/alienrwalk0.gif"
