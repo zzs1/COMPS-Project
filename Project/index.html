@@ -96,32 +96,34 @@
                     var text = document.getElementById("t").value;
                     
 
-                    if(text === "ajax"){
+                  if(text === "ajax"){
 
-                        var head = document.createElement("h1");
-                        head.id = "head1"
-                        head.value = "head1"
-                        document.body.appendChild(head);
-
-                        var xhttp = new XMLHttpRequest()
-                        xhttp.open("GET", "advice.txt", true)
-                        xhttp.onreadystatechange = handleResponse()
-                        xhttp.send(null)
-                        
-                        function handleResponse() {
-
-                        if (xhttp.readyState == 4){
-                            if(xhttp.status == 200)
+                        var MyAjaxRequestObject = new XMLHttpRequest()
+                        MyAjaxRequestObject.open("GET", "advice.txt", true)
+                        MyAjaxRequestObject.onreadystatechange=ProcessData
+                        MyAjaxRequestObject.send(null)
+                        function ProcessData(){
+                            if(MyAjaxRequestObject.readyState == 4)
                             {
-                                document.getElementById("head1").innerText = xhttp.responseText;
-                                document.getElementById("head1").innerText = toUpperCase();
-                            }
-                          
+                                if(MyAjaxRequestObject.status == 200)
+                                {
+                            var head = document.createElement("h1")
+                            var head1 = JSON.parse(MyAjaxRequestObject.responseText)
+                            head.innerHTML = head1;
+                            head.innerHTML = toUpperCase()
+                            document.body.appendChild(head)
                         }
-
-
-                    }
-
+                             else if(MyAjaxRequestObject.status == 404)
+                             {
+                                 alert("error!")
+                             }
+                             else
+                             {
+                             alert("What?")
+                             }
+                            }
+                        }
+                    
                     }
 
             else if(text === "alien"){
